@@ -28,6 +28,8 @@ And:
 `> jadejobs prod myfakejobid456`
 `Error: my.fake.dev.account@gmail.com is not authorized for prod`
 
+The Monster team has some super hacky simple Python code that we could base this off of: https://github.com/broadinstitute/monster-helm/blob/master/charts/argo-templates/scripts/poll-ingest-job.py
+
 ## CLI V1
 Cool, we have it up and running! But all we've really done is that instead of hitting "execute" repeatedly on Swagger, we just keep checking terminal until the job is done. Better, but not by a whole lot.
 
