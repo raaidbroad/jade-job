@@ -12,6 +12,9 @@ requests = "^2.25.0"
 pytest = "^6.1"
 black = "^20.8b1"
 
+[tool.poetry.scripts]
+jade = 'jade_job.main:run'
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
