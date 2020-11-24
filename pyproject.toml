@@ -5,7 +5,7 @@ description = "A Jade Job CLI"
 authors = ["rexwangcc <rexwangcc@gmail.com>", "raaidbroad <rarshad@broadinstitute.org>", "rori <aurora@broadinstitute.org>", "gwade <gwade@broadinstitute.org>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.6"
 requests = "^2.25.0"
 
 [tool.poetry.dev-dependencies]
