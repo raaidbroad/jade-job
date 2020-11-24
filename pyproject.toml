@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "jade-job"
+version = "0.1.0"
+description = "A Jade Job CLI"
+authors = ["rexwangcc <rexwangcc@gmail.com>", "raaidbroad <rarshad@broadinstitute.org>", "rori <aurora@broadinstitute.org>", "gwade <gwade@broadinstitute.org>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.25.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.1"
+black = "^20.8b1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
