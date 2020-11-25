@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - .github/workflows
       - jade_job/**
       - tests/**
       - pyproject.toml
