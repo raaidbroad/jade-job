@@ -1,10 +1,14 @@
 name: Unit Test
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
-      - master
+      - main
     paths:
+      - .github/workflows/**
       - jade_job/**
       - tests/**
       - pyproject.toml
