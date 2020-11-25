@@ -19,9 +19,10 @@ class DefaultHelpParser(argparse.ArgumentParser):
         sys.exit(2)
 
 
-def alert(job_uuid: str, job_status: str):
+def macos_alert(job_id: str, job_status: str):
+    """Alert with job_uuid and job_status through macOS system alerts."""
     title = 'Jade Job Status'
-    text =  f"Job {job_uuid} completed with status: {job_status}"
+    text =  f"Job {job_id} completed with status: {job_status}"
     os.system(f"osascript -e 'display notification \"{text}\" with title \"{title}\"'")
 
 
@@ -50,7 +51,7 @@ def poll_job(job_id: str, timeout: int, env: str):
     try:
         polling.poll(lambda: is_done(job_id, env), step=10, step_function=step_function, timeout=timeout)
         status = check_job_status(job_id, env)
-        alert(job_id, status)
+        macos_alert(job_id, status)
         # is done after poll
     except polling.TimeoutException as te:
         while not te.values.empty():
