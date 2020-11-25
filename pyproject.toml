@@ -5,6 +5,8 @@ description = "A Jade Job CLI"
 authors = ["rexwangcc <rexwangcc@gmail.com>", "raaidbroad <rarshad@broadinstitute.org>", "rori <aurora@broadinstitute.org>", "gwade <gwade@broadinstitute.org>"]
 
 [tool.poetry.dependencies]
+google-auth = "^1.23.0"
+polling = "^0.3.0"
 python = "^3.6"
 requests = "^2.25.0"
 
