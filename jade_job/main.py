@@ -19,13 +19,13 @@ class DefaultHelpParser(argparse.ArgumentParser):
         sys.exit(2)
 
 
-def alert(job_uuid, job_status: str):
+def alert(job_uuid: str, job_status: str):
     title = 'Jade Job Status'
     text =  f"Job {job_uuid} completed with status: {job_status}"
     os.system(f"osascript -e 'display notification \"{text}\" with title \"{title}\"'")
 
 
-def get_authorized_session():
+def get_authorized_session() -> AuthorizedSession:
     credentials, project = google.auth.default(scopes=['openid', 'email', 'profile'])
     return AuthorizedSession(credentials)
 
@@ -74,7 +74,7 @@ def is_done(job_id: str, env: str) -> bool:
     # if "succeeded" then we want to stop polling, so true
     # if "failed" then we want to stop polling, so true
     status = check_job_status(job_id, env)
-    return status in ['succeeded', 'failed']
+    return status in {'succeeded', 'failed'}
 
 
 def step_function(step: int) -> int:
