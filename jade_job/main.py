@@ -19,12 +19,10 @@ class DefaultHelpParser(argparse.ArgumentParser):
         sys.exit(2)
 
 
-def alert(job_uuid, job_status):
+def alert(job_uuid, job_status: str):
     title = 'Jade Job Status'
     text =  f"Job {job_uuid} completed with status: {job_status}"
-    os.system("""
-              osascript -e 'display notification "{}" with title "{}"'
-              """.format(text, title))
+    os.system(f"osascript -e 'display notification \"{text}\" with title \"{title}\"'")
 
 
 def get_authorized_session():
