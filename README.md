@@ -41,3 +41,12 @@ Boom, notifications added.
 Now having a simple async CLI thing is nice and all, but we all use slack and it'd be awesome to be able to type this in slack:
 `/jadejob dev myfakejobid123`
 TODO
+
+## Get Started
+
+_This project requires Python 3.6(+)_
+
+- Install [`poetry`](https://python-poetry.org/docs/)
+- Install the dependencies using `poetry install`, this will also install the project locally for development purposes for you
+- To run the tests, use `pytest -v` or `poetry run pytest -v`
+- To add new dependencies or update existing ones, use `poetry add` or edit the `pyproject.toml` file directly and then `poetry update`
