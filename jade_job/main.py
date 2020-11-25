@@ -19,15 +19,14 @@ class DefaultHelpParser(argparse.ArgumentParser):
         sys.exit(2)
 
 
-def alert(job_uuid, job_status):
+def macos_alert(job_id: str, job_status: str):
+    """Alert with job_uuid and job_status through macOS system alerts."""
     title = 'Jade Job Status'
-    text =  f"Job {job_uuid} completed with status: {job_status}"
-    os.system("""
-              osascript -e 'display notification "{}" with title "{}"'
-              """.format(text, title))
+    text =  f"Job {job_id} completed with status: {job_status}"
+    os.system(f"osascript -e 'display notification \"{text}\" with title \"{title}\"'")
 
 
-def get_authorized_session():
+def get_authorized_session() -> AuthorizedSession:
     credentials, project = google.auth.default(scopes=['openid', 'email', 'profile'])
     return AuthorizedSession(credentials)
 
@@ -52,7 +51,7 @@ def poll_job(job_id: str, timeout: int, env: str):
     try:
         polling.poll(lambda: is_done(job_id, env), step=10, step_function=step_function, timeout=timeout)
         status = check_job_status(job_id, env)
-        alert(job_id, status)
+        macos_alert(job_id, status)
         # is done after poll
     except polling.TimeoutException as te:
         while not te.values.empty():
@@ -76,7 +75,7 @@ def is_done(job_id: str, env: str) -> bool:
     # if "succeeded" then we want to stop polling, so true
     # if "failed" then we want to stop polling, so true
     status = check_job_status(job_id, env)
-    return status in ['succeeded', 'failed']
+    return status in {'succeeded', 'failed'}
 
 
 def step_function(step: int) -> int:
