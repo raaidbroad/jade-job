@@ -1,6 +1,6 @@
 # jade-job
 
-[![Unit Test](https://github.com/raaidbroad/jade-job/workflows/Unit%20Test/badge.svg?branch=main)](https://github.com/raaidbroad/jade-job/workflows/Unit%20Test/badge.svg?branch=main)
+[![Unit Test](https://github.com/raaidbroad/jade-job/workflows/Unit%20Test/badge.svg?branch=main)](https://github.com/raaidbroad/jade-job/actions?query=workflow%3A%22Unit+branch%3Amain+)
 
 A simple tool to be notified of when a Jade (Terra Data Repo) job has completed.
 
