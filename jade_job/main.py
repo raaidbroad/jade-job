@@ -5,6 +5,7 @@ import sys
 import google.auth
 from google.auth.transport.requests import AuthorizedSession
 import polling
+import os
 from requests.exceptions import HTTPError
 
 from jade_job import __version__ as jade_job_version
@@ -16,6 +17,14 @@ class DefaultHelpParser(argparse.ArgumentParser):
         sys.stderr.write(f'error: {message}\n')
         self.print_help()
         sys.exit(2)
+
+
+def alert(job_uuid, job_status):
+    title = 'Jade Job Status'
+    text =  f"Job {job_uuid} completed with status: {job_status}"
+    os.system("""
+              osascript -e 'display notification "{}" with title "{}"'
+              """.format(text, title))
 
 
 def get_authorized_session():
@@ -42,7 +51,8 @@ def poll_job(job_id: str, timeout: int, env: str):
     # TODO
     try:
         polling.poll(lambda: is_done(job_id, env), step=10, step_function=step_function, timeout=timeout)
-        print('it works!')
+        status = check_job_status(job_id, env)
+        alert(job_id, status)
         # is done after poll
     except polling.TimeoutException as te:
         while not te.values.empty():
